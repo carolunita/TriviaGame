@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<title>The Nightmare Before Christmas Trivia Game</title>
+
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Russo+One|Tienne" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+		<link rel="shortcut icon" type="image/x-icon" href="assets/images/Carolunita.png"/>
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto" align="center">
+					<img class="img-fluid" id="headerimage" src="assets/images/triviaLogo.png" alt="The Nightmare Before Christmas Logo"/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="container" id="audioControls">
+					<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" align="center">
+						<audio id="introSong" src="assets/audio/whatsThis.mp3"></audio>
+						<audio id="gameSong" src="assets/audio/Halloween.mp3"></audio>
+						<audio id="restartMusic" src="assets/audio/OogieBoogie.mp3"></audio>
+						<audio id="correctSound" src="assets/audio/correct.wav"></audio>
+						<audio id="incorrectSound" src="assets/audio/incorrect.mp3"></audio>
+						<button class="audiobutton" id="playSong"><span class="fas fa-play"></span></button>
+						<button class="audiobutton" id="pauseSong"><span class="fas fa-pause"></span></button>
+						<button class="audiobutton" id="restartSong"><span class="fas fa-sync-alt"></span></button>
+						<button class="audiobutton" id="volumeDown"><span class="fas fa-volume-down"></span></button>
+						<button class="audiobutton" id="volumenUp"><span class="fas fa-volume-up"></span></button>
+						<p class="audioCaps">Audio Controls</p>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mx-auto">
+					<div class="container fadeEffect">
+						<div class="row">
+							<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+								<h1>Instructions</h1>
+								<p>All questions are related to the film. You will have <b>30 Seconds</b> to answer each question. Your final score will be shown at the end of the game.</p> 
+								<p><b>GOOD LUCK!</b></p>
+								<p>&darr; Click the <b>Start</b> button to begin &darr;</p>
+							</div> 
+						</div>
+					</div>
+
+					<div class="row fadeEffect">
+						<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+							<button id="startGame">Start</button>
+						</div>
+					</div>
+
+					<div class="container" id="trackerBox">
+						<div class="row">
+							<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+								<div class="row">
+									<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
+										<div id="correctBox">Correct : <span class="correct">0</span></div>
+									</div>
+
+									<div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 text-center">
+										<div id="incorrectBox">Incorrect : <span class="incorrect">0</span></div>					
+									</div>
+
+									<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 text-center">
+										<div id="remainingTime">Time Remaining : <span class="remaining">30</span></div>							
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container questionBox">
+						<div class="row">
+							<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+								<h1 id="questionNumber"></h1>
+								<p id="question"></p>
+								<button class="answer" id="answerOne"></button><br>
+								<button class="answer" id="answerTwo"></button><br>
+								<button class="answer" id="answerThree"></button>
+							</div>
+						</div>
+					</div>
+
+					<div class="container answerBox">
+						<div class="row">
+							<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+										<h1 id="result"></h1>
+										<p id="answerText"></p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-6 col-lg-12 col-xl-12 text-center">
+										<img class="img-fluid" id="answerGif" src="assets/images/bilborun.gif" alt="Answer Gif" align="middle"/>
+									</div>
+								</div>
+							</div> 
+						</div>
+					</div> 
+
+					<div class="container restartBox">
+						<div class="row"> 
+							<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12"> 
+								<h1>Game Over!</h1>
+								<p>You answered <span class="correct"></span> questions correctly and <span class="incorrect"></span> questions incorrectly.
+								<p>Your final score is <span id="finalScore"></span>. Would you like to play again?</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="row restartBox">
+						<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+							<button id="restartGame">Restart</button>
+						</div>
+					</div>
+
+				</div>
+				
+			</div>
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="assets/javascript/app.js"></script>
+
+	</body>
+	
+</html>
