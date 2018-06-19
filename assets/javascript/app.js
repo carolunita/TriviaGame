@@ -1,10 +1,12 @@
 $(document).ready(function() {
 
+	// Hide Elements
 	$("#trackerBox").hide();
 	$(".questionBox").hide();
 	$(".answerBox").hide();
 	$(".restartBox").hide();
 
+	// Declaring Variables
 	var introSong = document.getElementById("introSong");
 	var gameSong = document.getElementById("gameSong");
 	var gameSong = document.getElementById("restartMusic");
@@ -18,6 +20,7 @@ $(document).ready(function() {
 	var index = 0;
 	var finalScore = 0;
 	
+	// Trivia Questions (Array of Objects)
 	var questionSelect = [
 		{questionNumber: "Question # 1",
 		question: "WHAT IS ON THE END OF ZERO'S NOSE?",
@@ -130,136 +133,7 @@ $(document).ready(function() {
 		gif: "assets/images/vision.gif"}
 	];
 
-	introSong.play();
-	$("#introSong").prop("volume", 0.5);
-	audioControls(introSong);
-
-	$("#startGame").click(function startGame() {
-
-		$("#introSong").animate({volume: 0}, 3000);
-		setTimeout("introSong.pause();", 3000);
-
-		$(".fadeEffect").fadeOut(2000);
-
-		$("#trackerBox").delay(2000).fadeIn(2000);
-		audioControls(gameSong);
-
-		$("#gameSong").prop("volume", 0);
-		setTimeout("gameSong.play();", 3000);
-		$("#gameSong").animate({volume: 0.5}, 3500);
-		
-		question(index);
-		selectAnswer();
-	});
-
-	function audioControls(music) {
-		var volume = 0.5;
-
-		$("#playSong").click(function() {
-			music.play();
-		});
-
-		$("#pauseSong").click(function() {
-			music.pause();
-		});
-
-		$("#restartSong").click(function() {
-			music.pause();
-			music.currentTime = 0;
-			music.play();
-		});
-
-		$("#volumeDown").click(function() {
-			volume = volume - 0.1;
-			music.volume = volume;
-		});
-
-		$("#volumeUp").click(function() {
-			volume = volume + 0.1;
-			music.volume = volume;
-		});
-	}
-
-	function countDown() {
-		if (remaining > 0) {
-			remaining--;
-			updateScreen();
-		} else {
-			remaining = 0;
-		}
-
-		if (remaining == 0) {
-			incorrect++;
-			result = "Time's Up!"
-			incorrectSound.play();
-			$(".questionBox").fadeOut(2000);
-			$("#answerText").text(questionSelect[index].answerText);
-			$(".answerBox").delay(2000).fadeIn(2000);
-			clearInterval(timer);
-			updateScreen();
-			setTimeout(nextQuestion, 7000);
-		}
-	}
-
-	function endGame() {
-		updateScreen();
-		$(".answerBox").fadeOut(2000);
-		$(".restartBox").delay(2000).fadeIn(2000);
-		$("#gameSong").animate({volume: 0}, 3000);
-		setTimeout("gameSong.pause();", 3000);
-		
-		$("#restartGame").click(function() {
-			$(".restartBox").fadeOut(2000);
-			correct = 0;
-			incorrect = 0;
-			remaining = 30;
-			result = "";
-			timer = "";
-			index = 0;
-			finalScore = 0;
-			question(index);
-			$("#restartMusic").prop("volume", 0);
-			setTimeout("restartMusic.play();", 1000);
-			$("#restartMusic").animate({volume: 0.5}, 3500);
-		});
-	}
-
-	function nextQuestion() {
-		$(".answerBox").fadeOut(2000);
-		remaining = 30;
-		index++;
-
-		if (index == questionSelect.length) {
-			endGame();
-		} else {
-			question(index);
-		}
-	}
-
-	function question(X) {
-		timer = setInterval(countDown, 1000);
-		$(".questionBox").delay(2000).fadeIn(2000);
-
-		$("#questionNumber").text(questionSelect[X].questionNumber);
-		$("#question").text(questionSelect[X].question);
-		$("#answerOne").text(questionSelect[X].answerOne);
-		$("#answerOne").removeAttr("value").val(questionSelect[X].answerOneValue);
-		$("#answerTwo").text(questionSelect[X].answerTwo);
-		$("#answerTwo").removeAttr("value").val(questionSelect[X].answerTwoValue);
-		$("#answerThree").text(questionSelect[X].answerThree);
-		$("#answerThree").removeAttr("value").val(questionSelect[X].answerThreeValue);
-	}
-
-	function updateScreen() {
-		$(".correct").text(correct);
-		$(".incorrect").text(incorrect);
-		$(".remaining").text(remaining);
-		$("#result").text(result);
-
-		finalScore = correct * 5;
-		$("#finalScore").text(finalScore);
-	}
-
+	// Answer Selection
 	function selectAnswer() {
 		$(".answer").click(function() {
 			var userAnswer = $(this).val();
@@ -288,4 +162,145 @@ $(document).ready(function() {
 			}
 		}); 
 	}
+
+	// Play Intro Song on Start
+	introSong.play();
+	$("#introSong").prop("volume", 0.5);
+	audioControls(introSong);
+
+	// Start Game when clicks event occurs
+	$("#startGame").click(function startGame() {
+		// Fade & Stop Intro Song
+		$("#introSong").animate({volume: 0}, 3000);
+		setTimeout("introSong.pause();", 3000);
+		// Instructions & Start Button Effect
+		$(".fadeEffect").fadeOut(2000);
+		// Fade Controls
+		$("#trackerBox").delay(2000).fadeIn(2000);
+		audioControls(gameSong);
+		// Start Game Song
+		$("#gameSong").prop("volume", 0);
+		setTimeout("gameSong.play();", 3000);
+		$("#gameSong").animate({volume: 0.5}, 3500);
+		// Run Game
+		question(index);
+		selectAnswer();
+	});
+
+	// Audio Controls
+	function audioControls(music) {
+		var volume = 0.5;
+
+		$("#playSong").click(function() {
+			music.play();
+		});
+
+		$("#pauseSong").click(function() {
+			music.pause();
+		});
+
+		$("#restartSong").click(function() {
+			music.pause();
+			music.currentTime = 0;
+			music.play();
+		});
+
+		$("#volumeDown").click(function() {
+			volume = volume - 0.1;
+			music.volume = volume;
+		});
+
+		$("#volumeUp").click(function() {
+			volume = volume + 0.1;
+			music.volume = volume;
+		});
+	}
+
+	// Timer Fucntion
+	function countDown() {
+		if (remaining > 0) {
+			remaining--;
+			updateScreen();
+		} else {
+			remaining = 0;
+		}
+		// Failing to Select an Answer
+		if (remaining == 0) {
+			incorrect++;
+			result = "Time's Up!"
+			incorrectSound.play();
+			$(".questionBox").fadeOut(2000);
+			$("#answerText").text(questionSelect[index].answerText);
+			$(".answerBox").delay(2000).fadeIn(2000);
+			clearInterval(timer);
+			updateScreen();
+			setTimeout(nextQuestion, 7000);
+		}
+	}
+
+	// End Game
+	function endGame() {
+		updateScreen();
+		$(".answerBox").fadeOut(2000);
+		$(".restartBox").delay(2000).fadeIn(2000);
+		$("#gameSong").animate({volume: 0}, 3000);
+		setTimeout("gameSong.pause();", 3000);
+		// Reset Variables / Play Second Song / Start New Game
+		$("#restartGame").click(function() {
+			$(".restartBox").fadeOut(2000);
+			correct = 0;
+			incorrect = 0;
+			remaining = 30;
+			result = "";
+			timer = "";
+			index = 0;
+			finalScore = 0;
+			question(index);
+			$("#restartMusic").prop("volume", 0);
+			setTimeout("restartMusic.play();", 1000);
+			$("#restartMusic").animate({volume: 0.5}, 3500);
+		});
+	}
+
+	// Load Next Question
+	function nextQuestion() {
+		$(".answerBox").fadeOut(2000);
+		remaining = 30;
+		index++;
+
+		if (index == questionSelect.length) {
+			endGame();
+		} else {
+			question(index);
+		}
+	}
+
+	// Question Timer
+	function question(X) {
+		timer = setInterval(countDown, 1000);
+		$(".questionBox").delay(2000).fadeIn(2000);
+
+		// Update Question & Apply Values to Answers
+		$("#questionNumber").text(questionSelect[X].questionNumber);
+		$("#question").text(questionSelect[X].question);
+		$("#answerOne").text(questionSelect[X].answerOne);
+		$("#answerOne").removeAttr("value").val(questionSelect[X].answerOneValue);
+		$("#answerTwo").text(questionSelect[X].answerTwo);
+		$("#answerTwo").removeAttr("value").val(questionSelect[X].answerTwoValue);
+		$("#answerThree").text(questionSelect[X].answerThree);
+		$("#answerThree").removeAttr("value").val(questionSelect[X].answerThreeValue);
+	}
+
+	// Update Counter
+	function updateScreen() {
+		$(".correct").text(correct);
+		$(".incorrect").text(incorrect);
+		$(".remaining").text(remaining);
+		$("#result").text(result);
+		
+	// Final Score
+		finalScore = correct * 5;
+		$("#finalScore").text(finalScore);
+	}
+
 }); 
