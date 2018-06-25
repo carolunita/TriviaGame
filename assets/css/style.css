@@ -97,7 +97,7 @@ button:hover {
 	background-color: #dba500;
 }
 
-#startGame, button#restartGame {
+#startGame, #restartGame {
 	margin-bottom: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -157,7 +157,7 @@ p:last-child {
 	margin-bottom: 0px;
 }
 
-p.audioCaps {
+.audioCaps {
 	margin-top: 0px;
 	font-weight: bold;
 	text-transform: uppercase;
