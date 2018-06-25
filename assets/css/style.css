@@ -22,13 +22,13 @@ body {
 	color: #000000;
 }
 
-div#trackerBox {
+#trackerBox {
 	margin-bottom: 10px;
 	padding: 10px 10px;
 	border-radius: 10px;
 }
 
-div#audioControls{
+#audioControls{
 	width: 100%;
 	margin-bottom: 0px;
 	padding: 10px 10px;
@@ -37,7 +37,7 @@ div#audioControls{
 	border-radius: 10px;
 }
 
-button.audiobutton {
+.audiobutton {
 	margin-bottom: 5px;
 	padding: 2px 5px;
 	border-radius: 5px;
@@ -50,11 +50,11 @@ button.audiobutton {
   	transition: 0.5s;
 }
 
-button.audiobutton:hover {
+.audiobutton:hover {
 	background-color: #700070;
 }
 
-div#correctBox {
+#correctBox {
 	padding: 10px;
 	background-color: #0d900f;
 	font-weight: bold;
@@ -63,7 +63,7 @@ div#correctBox {
 	border-radius: 10px;
 }
 
-div#incorrectBox {
+#incorrectBox {
 	padding: 10px;
 	background-color: #b20000;
 	font-weight: bold;
@@ -72,7 +72,7 @@ div#incorrectBox {
 	border-radius: 10px;
 }
 
-div#remainingTime {
+#remainingTime {
 	padding: 10px;
 	background-color: #dba500;
 	font-weight: bold;
@@ -97,7 +97,7 @@ button:hover {
 	background-color: #dba500;
 }
 
-button#startGame, button#restartGame {
+#startGame, button#restartGame {
 	margin-bottom: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -106,7 +106,7 @@ button#startGame, button#restartGame {
 	font-size: 25px;
 }
 
-button.answer {
+.answer {
 	width: 100%;
 	margin-bottom: 10px;
 	padding: 10px;
@@ -115,32 +115,32 @@ button.answer {
 	color: #000000;
 }
 
-button.answer:last-child {
+.answer:last-child {
 	margin-bottom: 0px;
 }
 
-button.answer:hover {
+.answer:hover {
 	background-color: #dba500;;
 	color: #ffffff;
 	border: 1px solid #000000;
 }
 
-img.fluid{
+.fluid{
 	padding-top: 100px;
 	width: 100%;
 }
 
-img#originalheader {
+#originalheader {
 	display: none;
 }
 
-img#headerimage {
+#headerimage {
 	margin-top: 10px;
 	margin-bottom: 10px;
 
 }
 
-img#answerGif {
+#answerGif {
 	width: 100%;
 	margin-top: 20px;
 }
@@ -163,14 +163,6 @@ p.audioCaps {
 	text-transform: uppercase;
 }
 
-p#disclaimer {
-	margin-bottom: 10px;
-	font-size: 10px;
-	text-align: center;
-	color: #ffffff;
-	border-top: 1px solid #000000;
-}
-
-span#correct, span#incorrect, span#remaining {
+#correct, #incorrect, #remaining {
 	font-size: 16px;
 }
